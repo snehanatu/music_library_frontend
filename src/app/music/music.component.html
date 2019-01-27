@@ -1,0 +1,88 @@
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <form>
+        <div class="form-row">
+          <div class="col-md-4">
+            <input type="text" name="songName" id="songName" [(ngModel)]="newMusic.songName" 
+              placeholder="Song Name" class="form-control">
+          </div>
+          <div class="col-md-7">
+            <input name="singerName" id="singerName" [(ngModel)]="newMusic.singerName" 
+              placeholder="Singer Name" class="form-control" >
+          </div>
+
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="musics" *ngIf="musicsList">
+        <table class="table table-striped table-dark">
+          <thead class="h">
+            <tr class="h">
+              <th class="h">Song Name</th>
+              <th class="h">Singer Name</th>
+              <th class="h">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="music" (dblclick)="editMusic(music)" *ngFor="let music of musicsList">
+             <ng-container *ngIf="!editMusics.includes(music); else editTD">
+                <td>{{music.songName}}</td>
+                <td>{{music.singerName}}</td>
+                <td>{{music.status}}</td>
+
+              </ng-container>
+
+
+
+              <ng-template #editTD>
+
+                <td><input type="text" name="songName" id="songName" (keypress)="submitMusic($event, music)" 
+                  [(ngModel)]="music.songName" placeholder="Song Name" class="form-control"></td>
+
+                <td><input type="text" name="singerName" id="singerName" (keypress)="submitMusic($event, music)"
+                  [(ngModel)]="music.singerName" placeholder="Singer Name" class="form-control"></td>
+
+                <td><input type="text" name="status" id="status" (keypress)="submitMusic($event, music)" 
+                  [(ngModel)]="music.status" placeholder="Status" class="form-control"></td>
+
+              </ng-template>
+
+
+
+              <td class="o">
+
+                <button class="btn btn-success" (click)="doneMusic(music)">
+                  <i class="fa fa-check"></i>
+                </button>
+
+                <button class="btn btn-primary" (click)="editMusic(music)">
+                  <i class="fa fa-pencil"></i>
+                </button>
+
+                <button class="btn btn-danger" (click)="deleteMusic(music)">
+                  <i class="fa fa-trash"></i>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
