@@ -13,6 +13,15 @@
             <input name="singerName" id="singerName" [(ngModel)]="newMusic.singerName" 
               placeholder="Singer Name" class="form-control" >
           </div>
+          <div class="col-md-7">
+            <input name="albumName" id="albumName" [(ngModel)]="newMusic.albumName" 
+              placeholder="Album Name" class="form-control" >
+          </div>
+          <div class="col-md-7">
+            <input name="trackNumber" id="trackNumber" [(ngModel)]="newMusic.trackNumber" 
+              placeholder="Track Number" class="form-control" >
+          </div>
+
 
           <div class="col-md-1">
             <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
@@ -32,6 +41,8 @@
             <tr class="h">
               <th class="h">Song Name</th>
               <th class="h">Singer Name</th>
+              <th class="h">Album Name</th>
+              <th class="h">Track Number</th>
               <th class="h">Status</th>
             </tr>
           </thead>
@@ -40,6 +51,8 @@
              <ng-container *ngIf="!editMusics.includes(music); else editTD">
                 <td>{{music.songName}}</td>
                 <td>{{music.singerName}}</td>
+                <td>{{music.albumName}}</td>
+                <td>{{music.trackNumber}}</td>
                 <td>{{music.status}}</td>
 
               </ng-container>
@@ -53,6 +66,13 @@
 
                 <td><input type="text" name="singerName" id="singerName" (keypress)="submitMusic($event, music)"
                   [(ngModel)]="music.singerName" placeholder="Singer Name" class="form-control"></td>
+
+                <td><input type="text" name="albumName" id="albumName" (keypress)="submitMusic($event, music)"
+                    [(ngModel)]="music.albumName" placeholder="Album Name" class="form-control"></td>
+
+                <td><input type="text" name="trackNumber" id="trackNumber" (keypress)="submitMusic($event, music)"
+                      [(ngModel)]="music.trackNumber" placeholder="Track Number" class="form-control"></td>
+  
 
                 <td><input type="text" name="status" id="status" (keypress)="submitMusic($event, music)" 
                   [(ngModel)]="music.status" placeholder="Status" class="form-control"></td>
@@ -68,7 +88,7 @@
                 </button>
 
                 <button class="btn btn-primary" (click)="editMusic(music)">
-                  <i class="fa fa-pencil"></i>
+                  <i class="sfa fa-pencil"></i>
                 </button>
 
                 <button class="btn btn-danger" (click)="deleteMusic(music)">
